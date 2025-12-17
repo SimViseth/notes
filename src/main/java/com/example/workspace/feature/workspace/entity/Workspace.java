@@ -1,8 +1,6 @@
 package com.example.workspace.feature.workspace.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +16,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Workspace {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer workspaceId;
     String workspaceName;
     Boolean isPrivate;

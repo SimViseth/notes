@@ -23,7 +23,7 @@ public class WorkspaceServiceImplement implements WorkspaceService {
     public BaseResponse<WorkspaceResponse> createWorkspace(WorkspaceRequest workspaceRequest) {
 
         // map request to entity
-        var workspace = new Workspace();
+        Workspace workspace = new Workspace();
         workspace.setWorkspaceName(workspaceRequest.getWorkspaceName());
         workspace.setIsPrivate(workspaceRequest.getIsPrivate());
         workspace.setCreatedAt(LocalDateTime.now());
@@ -36,6 +36,7 @@ public class WorkspaceServiceImplement implements WorkspaceService {
         WorkspaceResponse workspaceResponse = WorkspaceResponse.builder()
                 .workspaceId(daoResponse.getEntity().getWorkspaceId())
                 .workspaceName(daoResponse.getEntity().getWorkspaceName())
+                .isPrivate(daoResponse.getEntity().getIsPrivate())
                 .createdAt(daoResponse.getEntity().getCreatedAt())
                 .updatedAt(daoResponse.getEntity().getUpdatedAt())
                 .build();
@@ -44,9 +45,9 @@ public class WorkspaceServiceImplement implements WorkspaceService {
         BaseResponse<WorkspaceResponse> baseResponse = new BaseResponse<>();
         baseResponse.setCode(SUCCESS_CODE);
         baseResponse.setStatus(SUCCESS);
-        baseResponse.setEntity(workspaceResponse);
+        baseResponse.setMsgDev("Create workspace successfully");
+        baseResponse.setData(workspaceResponse);
 
         return baseResponse;
-
     }
 }

@@ -17,7 +17,7 @@ public class WorkspaceController {
 
     private final WorkspaceService workspaceService;
 
-    @PostMapping
+    @PostMapping("create")
     public BaseResponse<WorkspaceResponse> createWorkspace(@RequestBody WorkspaceRequest workspaceRequest) {
         BaseResponse<WorkspaceResponse> workspaceResponse = workspaceService.createWorkspace(workspaceRequest);
         return workspaceResponse;

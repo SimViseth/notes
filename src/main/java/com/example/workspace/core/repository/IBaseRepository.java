@@ -2,10 +2,12 @@ package com.example.workspace.core.repository;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
 import java.util.Optional;
 
+@NoRepositoryBean // to prevent spring confuse create bean for repository
 public interface IBaseRepository<T, ID> extends JpaRepository<T, ID> {
 
     // Insert
