@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,9 +18,9 @@ import java.sql.Timestamp;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Workspace {
     @Id
-    int workspaceId;
+    Integer workspaceId;
     String workspaceName;
-    boolean isPrivate;
-    Timestamp createdAt;
-    Timestamp updatedAt;
+    Boolean isPrivate;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }

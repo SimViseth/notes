@@ -5,29 +5,21 @@ import java.util.concurrent.CompletableFuture;
 
 public interface IBaseDBDao<T, ID> {
 
+    // Save
     BaseEntityResponseDto<T> saveEntity(T entity);
 
-    CompletableFuture<BaseEntityResponseDto<T>> saveEntityAsync(T entity);
-
+    // Save multi
     BaseEntityResponseDto<List<T>> saveEntities(List<T> entities);
 
-    CompletableFuture<BaseEntityResponseDto<List<T>>> saveEntitiesAsync(List<T> entities);
-
+    // Get by Id
     BaseEntityResponseDto<T> findById(ID id);
 
-    CompletableFuture<BaseEntityResponseDto<T>> getEntityByIdAsync(ID id);
-
+    // Update
     BaseEntityResponseDto<T> update(T entity);
 
-    CompletableFuture<BaseEntityResponseDto<T>> updateAsync(T entity);
-
-    BaseEntityResponseDto<T> findAllWithSortBy(String sortBy, String sortDirection);
-
-    CompletableFuture<BaseEntityResponseDto<T>> listAllAsync(String sortBy, String sortDirection);
-
+    // Find All
     BaseEntityResponseDto<T> findAll();
 
-    CompletableFuture<BaseEntityResponseDto<T>> findAllAsync();
-
+    // Delete
     BaseEntityResponseDto<T> deleteEntity(ID id);
 }
