@@ -27,4 +27,10 @@ public class WorkspaceController {
         BaseResponse<List<WorkspaceResponse>> workspaceResponse = workspaceService.getAllWorkspaces();
         return workspaceResponse;
     }
+
+    @GetMapping("/{workspaceId}")
+    public BaseResponse<WorkspaceResponse> getWorkspaceById(@PathVariable Integer workspaceId) {
+        BaseResponse<WorkspaceResponse> workspaceResponse = workspaceService.getWorkspaceById(workspaceId);
+        return workspaceResponse;
+    }
 }
