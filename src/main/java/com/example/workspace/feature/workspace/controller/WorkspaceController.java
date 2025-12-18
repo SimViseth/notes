@@ -33,4 +33,9 @@ public class WorkspaceController {
         BaseResponse<WorkspaceResponse> workspaceResponse = workspaceService.getWorkspaceById(workspaceId);
         return workspaceResponse;
     }
+    @PutMapping("/{workspaceId}")
+    public BaseResponse<WorkspaceResponse> getWorkspaceById(@PathVariable Integer workspaceId, @RequestBody WorkspaceRequest workspaceRequest) {
+        BaseResponse<WorkspaceResponse> workspaceResponse = workspaceService.updateWorkspace(workspaceId, workspaceRequest);
+        return workspaceResponse;
+    }
 }

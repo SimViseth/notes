@@ -117,4 +117,45 @@ public class WorkspaceServiceImplement implements WorkspaceService {
 
         return baseResponse;
     }
+
+    @Override
+    public BaseResponse<WorkspaceResponse> updateWorkspace(Integer workspaceId, WorkspaceRequest workspaceRequest) {
+        // check exist or not
+        BaseEntityResponseDto<Workspace> findResponse = workspaceDao.findById(workspaceId);
+        if (FAIL.equals(findResponse.getStatus())) {
+            BaseResponse<WorkspaceResponse> response = new BaseResponse<>();
+            response.setCode(NOT_FOUND);
+            response.setStatus(FAIL);
+            response.setMsgDev("Workspace not found");
+            return response;
+        }
+
+        Workspace workspace = findResponse.getEntity();
+
+        // prepare field for update
+        workspace.setWorkspaceName(workspaceRequest.getWorkspaceName());
+        workspace.setIsPrivate(workspaceRequest.getIsPrivate());
+        workspace.setUpdatedAt(LocalDateTime.now());
+
+        // call dao
+        BaseEntityResponseDto<Workspace> daoUpdateResponse = workspaceDao.update(workspace);
+        Workspace update = daoUpdateResponse.getEntity();
+
+        // map response
+        WorkspaceResponse workspaceResponse = WorkspaceResponse.builder()
+                .workspaceId(update.getWorkspaceId())
+                .workspaceName(update.getWorkspaceName())
+                .isPrivate(update.getIsPrivate())
+                .createdAt(update.getCreatedAt())
+                .updatedAt(update.getUpdatedAt())
+                .build();
+
+        BaseResponse<WorkspaceResponse> baseResponse = new BaseResponse<>();
+        baseResponse.setCode(SUCCESS_CODE);
+        baseResponse.setStatus(SUCCESS);
+        baseResponse.setMsgDev("Workspace updated successfully");
+        baseResponse.setData(workspaceResponse);
+
+        return baseResponse;
+    }
 }

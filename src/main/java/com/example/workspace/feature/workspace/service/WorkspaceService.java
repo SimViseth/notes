@@ -10,4 +10,6 @@ public interface WorkspaceService {
     BaseResponse<WorkspaceResponse> createWorkspace(WorkspaceRequest workspaceRequest);
     BaseResponse<List<WorkspaceResponse>> getAllWorkspaces();
     BaseResponse<WorkspaceResponse> getWorkspaceById(Integer workspaceId);
+    BaseResponse<WorkspaceResponse> updateWorkspace(Integer workspaceId, WorkspaceRequest workspaceRequest);
+
 }
