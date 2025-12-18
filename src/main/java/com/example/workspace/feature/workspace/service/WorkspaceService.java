@@ -11,5 +11,5 @@ public interface WorkspaceService {
     BaseResponse<List<WorkspaceResponse>> getAllWorkspaces();
     BaseResponse<WorkspaceResponse> getWorkspaceById(Integer workspaceId);
     BaseResponse<WorkspaceResponse> updateWorkspace(Integer workspaceId, WorkspaceRequest workspaceRequest);
-
+    BaseResponse<Void> deleteWorkspace(Integer workspaceId);
 }

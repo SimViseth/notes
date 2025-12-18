@@ -158,4 +158,28 @@ public class WorkspaceServiceImplement implements WorkspaceService {
 
         return baseResponse;
     }
+
+    @Override
+    public BaseResponse<Void> deleteWorkspace(Integer workspaceId) {
+        // check
+        BaseEntityResponseDto<Workspace> findResponse = workspaceDao.findById(workspaceId);
+        if (FAIL.equals(findResponse.getStatus())) {
+            BaseResponse<Void> response = new BaseResponse<>();
+            response.setCode(NOT_FOUND);
+            response.setStatus(FAIL);
+            response.setMsgDev("Workspace not found");
+            return response;
+        }
+
+        // call dao delete
+        workspaceDao.deleteEntity(workspaceId);
+
+        // final response
+        BaseResponse<Void> baseResponse = new BaseResponse<>();
+        baseResponse.setCode(SUCCESS_CODE);
+        baseResponse.setStatus(SUCCESS);
+        baseResponse.setMsgDev("Workspace deleted successfully");
+
+        return baseResponse;
+    }
 }

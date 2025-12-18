@@ -38,4 +38,9 @@ public class WorkspaceController {
         BaseResponse<WorkspaceResponse> workspaceResponse = workspaceService.updateWorkspace(workspaceId, workspaceRequest);
         return workspaceResponse;
     }
+
+    @DeleteMapping("/{workspaceId}")
+    public BaseResponse<Void> deleteWorkspace(@PathVariable Integer workspaceId) {
+        return workspaceService.deleteWorkspace(workspaceId);
+    }
 }
