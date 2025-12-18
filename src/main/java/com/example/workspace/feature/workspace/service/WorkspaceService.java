@@ -4,6 +4,9 @@ import com.example.workspace.app.response.BaseResponse;
 import com.example.workspace.feature.workspace.dto.request.WorkspaceRequest;
 import com.example.workspace.feature.workspace.dto.response.WorkspaceResponse;
 
+import java.util.List;
+
 public interface WorkspaceService {
     BaseResponse<WorkspaceResponse> createWorkspace(WorkspaceRequest workspaceRequest);
+    BaseResponse<List<WorkspaceResponse>> getAllWorkspaces();
 }
