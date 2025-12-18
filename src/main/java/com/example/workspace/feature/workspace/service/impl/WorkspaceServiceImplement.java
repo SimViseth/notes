@@ -80,4 +80,41 @@ public class WorkspaceServiceImplement implements WorkspaceService {
 
         return baseResponse;
     }
+
+    @Override
+    public BaseResponse<WorkspaceResponse> getWorkspaceById(Integer workspaceId) {
+
+        // call dao
+        BaseEntityResponseDto<Workspace> daoResponse = workspaceDao.findById(workspaceId);
+
+        // handle not found
+        if (FAIL.equals(daoResponse.getStatus())) {
+            BaseResponse<WorkspaceResponse> response = new BaseResponse<>();
+            response.setCode(daoResponse.getCode());
+            response.setStatus(FAIL);
+            response.setMsgDev("Workspace not found");
+            response.setData(null);
+            return response;
+        }
+
+        Workspace workspace = daoResponse.getEntity();
+
+        // map entity -> response
+        WorkspaceResponse workspaceResponse = WorkspaceResponse.builder()
+                .workspaceId(workspace.getWorkspaceId())
+                .workspaceName(workspace.getWorkspaceName())
+                .isPrivate(workspace.getIsPrivate())
+                .createdAt(workspace.getCreatedAt())
+                .updatedAt(workspace.getUpdatedAt())
+                .build();
+
+        // success response
+        BaseResponse<WorkspaceResponse> baseResponse = new BaseResponse<>();
+        baseResponse.setCode(SUCCESS_CODE);
+        baseResponse.setStatus(SUCCESS);
+        baseResponse.setMsgDev("Get workspace successfully");
+        baseResponse.setData(workspaceResponse);
+
+        return baseResponse;
+    }
 }
